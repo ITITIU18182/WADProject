@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Patient information</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="table-data">
+        <h2>Patient information</h2>
+        <table>
+            <% if(userData.length!= 0){
+                userData.forEach(function(data) {%>
+            <tr>
+                <td>Full Name: </td>
+                <td><%=data.Patient_Name %></td>
+            </tr>
+            <tr>
+                <td>ID: </td>
+                <td><%=data.Patient_ID %></td>
+            </tr>            
+            <tr>
+                <td>Email: </td>
+                <td><%=data.email %></td>
+            </tr>            
+            <tr>
+                <td>Phone Number: </td>
+                <td><%=data.phone %></td>
+            </tr>            
+            <tr>
+                <td>City: </td>
+                <td><%=data.city %></td>
+            </tr>            
+            <tr>
+                <td>District: </td>
+                <td><%=data.district %></td>
+            </tr>
+            <div>
+                <% if(data.Chosen_Doctor == null) { %>
+                    <tr>
+                        <td>
+                            <div class="signup_link">
+                            <form action="/registerDoctor" method = "get">
+                                <input type="submit" value = "Register Doctor">
+                            </form>
+                            </div>
+                        </tr>
+                    </td>
+                    <tr>
+                        <td>
+                            <div class="signup_link">
+                            <form action="/viewDoctor" method = "get">
+                                <input type="submit" value = "View all Doctor">
+                            </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/" method = "get">
+                                <div class="Log out">
+                                    <input type="submit" value = "Log out">
+                                </div>
+                              </form>
+                        </td>
+                    </tr>    
+                <% }else { %>
+                    <tr>
+                        <td>
+                            <div class="signup_link">
+                                <form action="/healthDeclare" method = "get">
+                                    
+                                    <input type="submit" value = "Health Declaration">
+                                </form>
+                            </div>  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/" method = "get">
+                                <div class="Log out">
+                                    <input type="submit" value = "Log out">
+                                </div>
+                              </form>
+                        </td>
+                    </tr>
+                <% } %>
+            </div>
+            <% }) %>
+            <% } else{ %>
+                <tr>
+                    <td colspan="7">No Data Found</td>
+                </tr>
+            <% } %>
+                <!-- <td>ID: </td>
+                <td>Email: </td>
+                <td>Phone: </td>
+                <td>City: </td>
+                <td>District: </td>
+
+            </tr> -->
+            <!-- <%
+                if(userData.length!=0){
+                userData.forEach(function(data){
+            %>
+            <tr>
+            </tr>
+            <% }) %>
+            <% }else{ %>
+                <tr>
+                    <td colspan="7">No Data Found</td>
+                </tr>
+            <% } %> -->
+
+        </table>
+    </div>
+</body>
+</html>
